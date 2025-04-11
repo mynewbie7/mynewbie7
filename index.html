@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal Style Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 1em;
+      overflow: hidden;
+    }
+
+    .terminal {
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1em;
+      background-color: #00ff00;
+      animation: blink 1s step-start infinite;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .input-line {
+      display: flex;
+    }
+
+    .prompt {
+      margin-right: 5px;
+    }
+
+    input {
+      background: none;
+      border: none;
+      color: #00ff00;
+      font-family: inherit;
+      font-size: inherit;
+      outline: none;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal" id="terminal">
+    > Connecting to irc://localhost...
+    > Connected.
+    > Logged in as <b>mynewbie7</b>
+    > Type 'help' for commands.
+    <div class="input-line">
+      <span class="prompt">></span>
+      <input type="text" id="commandInput" autofocus>
+      <span class="cursor"></span>
+    </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const input = document.getElementById('commandInput');
+
+    const responses = {
+      help: 'Available commands:\n- help\n- about\n- clear',
+      about: 'This is a terminal-style website created by mynewbie7.',
+      clear: 'clear'
+    };
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        const command = input.value.trim();
+        let output = responses[command] || `Unknown command: ${command}`;
+
+        const line = document.createElement('div');
+        line.textContent = '> ' + command;
+        terminal.insertBefore(line, input.parentElement);
+
+        if (output === 'clear') {
+          terminal.innerHTML = '';
+          terminal.appendChild(input.parentElement);
+          input.value = '';
+          return;
+        }
+
+        const responseLine = document.createElement('div');
+        responseLine.textContent = output;
+        terminal.insertBefore(responseLine, input.parentElement);
+
+        input.value = '';
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    });
+  </script>
+</body>
+</html>
