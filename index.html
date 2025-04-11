@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irssi-Style Terminal Website</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #ccc;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      height: 100vh;
+    }
+    .chat-window {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border-right: 1px solid #444;
+    }
+    .title-bar {
+      background-color: #111;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #444;
+    }
+    .messages {
+      flex-grow: 1;
+      padding: 10px 0;
+      overflow-y: auto;
+    }
+    .message {
+      white-space: pre;
+    }
+    .timestamp {
+      color: #888;
+    }
+    .nick {
+      color: #00ffff;
+    }
+    .input-bar {
+      background-color: #111;
+      color: #0f0;
+      padding: 5px 10px;
+      border-top: 1px solid #444;
+    }
+    .user-list {
+      background-color: #111;
+      padding: 10px;
+      border-left: 1px solid #444;
+      overflow-y: auto;
+    }
+    .user {
+      color: #0f0;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="title-bar">+status</div>
+  <div class="container">
+    <div class="chat-window">
+      <div class="messages">
+        <div class="message"><span class="timestamp">16:23</span> <span class="nick">@admin</span>: Welcome to the channel.</div>
+        <div class="message"><span class="timestamp">16:24</span> <span class="nick">user01</span>: Hello everyone!</div>
+        <div class="message"><span class="timestamp">16:25</span> <span class="nick">user02</span>: Hi user01!</div>
+        <div class="message"><span class="timestamp">16:26</span> <span class="nick">@admin</span>: Stay cool and enjoy chatting.</div>
+      </div>
+      <div class="input-bar">> _</div>
+    </div>
+    <div class="user-list">
+      <div class="user">@admin</div>
+      <div class="user">user01</div>
+      <div class="user">user02</div>
+      <div class="user">mynewbie7</div>
+    </div>
+  </div>
+</body>
+</html>
