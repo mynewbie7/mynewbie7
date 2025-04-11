@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irssi-Style Terminal Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    body.dark {
+      background-color: #000;
+      color: #ccc;
+    }
+    body.light {
+      background-color: #f4f4f4;
+      color: #000;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      height: calc(100vh - 30px);
+    }
+    .chat-window {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border-right: 1px solid #444;
+    }
+    .title-bar {
+      background-color: #111;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .messages {
+      flex-grow: 1;
+      padding: 10px 0;
+      overflow-y: auto;
+    }
+    .message {
+      white-space: pre;
+    }
+    .timestamp {
+      color: #888;
+    }
+    .nick {
+      color: #00ffff;
+    }
+    .input-bar {
+      background-color: #111;
+      color: #0f0;
+      padding: 5px 10px;
+      border-top: 1px solid #444;
+    }
+    .user-list {
+      background-color: #111;
+      padding: 10px;
+      border-left: 1px solid #444;
+      overflow-y: auto;
+    }
+    .user {
+      color: #0f0;
+      margin-bottom: 5px;
+    }
+    .channel-nav {
+      background-color: #222;
+      padding: 5px 10px;
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #444;
+    }
+    .channel {
+      cursor: pointer;
+      color: #0f0;
+    }
+    .channel.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid #666;
+      color: #fff;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body class="dark">
+  <div class="title-bar">
+    <span>+status</span>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+  <div class="channel-nav">
+    <span class="channel active" onclick="switchChannel('status')">#status</span>
+    <span class="channel" onclick="switchChannel('general')">#general</span>
+    <span class="channel" onclick="switchChannel('random')">#random</span>
+  </div>
+  <div class="container">
+    <div class="chat-window">
+      <div class="messages" id="chat-area">
+        <div class="message"><span class="timestamp">16:23</span> <span class="nick">@admin</span>: Welcome to the channel.</div>
+        <div class="message"><span class="timestamp">16:24</span> <span class="nick">user01</span>: Hello everyone!</div>
+        <div class="message"><span class="timestamp">16:25</span> <span class="nick">user02</span>: Hi user01!</div>
+        <div class="message"><span class="timestamp">16:26</span> <span class="nick">@admin</span>: Stay cool and enjoy chatting.</div>
+        <div class="message"><span class="timestamp">16:27</span> <span class="nick">mynewbie7</span>: Love the vibes here.</div>
+        <div class="message"><span class="timestamp">16:28</span> <span class="nick">guest3</span>: Anyone from Malaysia?</div>
+        <div class="message"><span class="timestamp">16:29</span> <span class="nick">user01</span>: I am!</div>
+      </div>
+      <div class="input-bar">> _</div>
+    </div>
+    <div class="user-list">
+      <div class="user">@admin</div>
+      <div class="user">user01</div>
+      <div class="user">user02</div>
+      <div class="user">mynewbie7</div>
+      <div class="user">guest3</div>
+    </div>
+  </div>
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+    }
+
+    function switchChannel(channel) {
+      document.querySelectorAll('.channel').forEach(el => el.classList.remove('active'));
+      document.querySelector(`.channel-nav .channel:nth-child(${channel === 'status' ? 1 : channel === 'general' ? 2 : 3})`).classList.add('active');
+
+      const chat = document.getElementById('chat-area');
+      chat.innerHTML = '';
+      if (channel === 'status') {
+        chat.innerHTML += `<div class="message"><span class="timestamp">16:23</span> <span class="nick">@admin</span>: Welcome to the channel.</div>`;
+        chat.innerHTML += `<div class="message"><span class="timestamp">16:24</span> <span class="nick">user01</span>: Hello everyone!</div>`;
+        chat.innerHTML += `<div class="message"><span class="timestamp">16:25</span> <span class="nick">user02</span>: Hi user01!</div>`;
+      } else if (channel === 'general') {
+        chat.innerHTML += `<div class="message"><span class="timestamp">09:01</span> <span class="nick">modbot</span>: Please follow the rules.</div>`;
+        chat.innerHTML += `<div class="message"><span class="timestamp">09:02</span> <span class="nick">hackerboy</span>: Anyone into retro tech?</div>`;
+      } else {
+        chat.innerHTML += `<div class="message"><span class="timestamp">11:11</span> <span class="nick">memelord</span>: Time for a meme break!</div>`;
+        chat.innerHTML += `<div class="message"><span class="timestamp">11:12</span> <span class="nick">funnyguy</span>: What do you call a fake noodle? An impasta.</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
