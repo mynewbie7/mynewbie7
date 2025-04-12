@@ -1,71 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IRC Terminal Style</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Irssi-Style Terminal Website</title>
   <style>
     body {
-      background-color: black;
-      color: #00FF00;
+      margin: 0;
+      background-color: #000;
+      color: #ccc;
       font-family: monospace;
-      font-size: 16px;
+      font-size: 14px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      height: 100vh;
+    }
+    .chat-window {
+      display: flex;
+      flex-direction: column;
       padding: 10px;
-      line-height: 1.4;
+      border-right: 1px solid #444;
     }
-
-    .irc-container {
-      white-space: pre-wrap;
-    }
-
-    .timestamp {
-      color: #00AA00;
-    }
-
-    .nick {
-      color: #00FF00;
+    .title-bar {
+      background-color: #111;
+      color: #fff;
+      padding: 5px 10px;
       font-weight: bold;
+      border-bottom: 1px solid #444;
     }
-
+    .messages {
+      flex-grow: 1;
+      padding: 10px 0;
+      overflow-y: auto;
+    }
     .message {
-      color: #66FF66;
+      white-space: pre;
     }
-
-    .notice {
-      color: #33FF33;
-      font-style: italic;
+    .timestamp {
+      color: #888;
     }
-
-    .topic {
-      color: #00FFAA;
+    .nick {
+      color: #00ffff;
     }
-
-    .command {
-      color: #009900;
+    .input-bar {
+      background-color: #111;
+      color: #0f0;
+      padding: 5px 10px;
+      border-top: 1px solid #444;
     }
-
-    .system {
-      color: #44FF44;
-      font-weight: bold;
+    .user-list {
+      background-color: #111;
+      padding: 10px;
+      border-left: 1px solid #444;
+      overflow-y: auto;
     }
-
-    .input {
-      display: block;
-      margin-top: 20px;
-      color: #00FF00;
+    .user {
+      color: #0f0;
+      margin-bottom: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="irc-container">
-<span class="timestamp">06:05</span> <span class="nick">--×--</span> <span class="message">DeadLock</span><br>
-<span class="timestamp">07:36</span> <span class="nick">--×--</span> <span class="message">New nick --&gt;&gt; vicvic7</span><br>
-<span class="timestamp">09:05</span> <span class="nick">--×--</span> <span class="message">Topic for #kk: </span><span class="topic">|Chat/Meet Friends/*AOP* Applications send me a memo ty =) |Enjoy your stay/Welcome You To Stay/Idle| Welcome To DALnet #KK | Happy New Year 2024.. hope this 2024 is our lucky years..</span><br>
-<span class="timestamp">09:05</span> <span class="system">Irssi:</span> <span class="message">#kk: Total of 9 nicks [4 ops, 1 halfops, 0 voices, 4 normal]</span><br>
-<span class="timestamp">09:05</span> <span class="system">Irssi:</span> <span class="message">Channel #kk created Tue Sep 13 08:17:15 2016</span><br>
-<span class="timestamp">09:06</span> <span class="system">Irssi:</span> <span class="message">Join to #kk was synced in 33 secs</span><br>
-<span class="timestamp">09:27</span> <span class="notice">-NickServ-</span> <span class="message">Password accepted for vicvic.</span><br>
-<span class="input">/!→ [18:21] [vicvic(+HSir)] [6:dal/#kk(+nt)]</span>
+  <div class="title-bar">+status</div>
+  <div class="container">
+    <div class="chat-window">
+      <div class="messages">
+        <div class="message"><span class="timestamp">16:23</span> <span class="nick">@admin</span>: Welcome to the channel.</div>
+        <div class="message"><span class="timestamp">16:24</span> <span class="nick">user01</span>: Hello everyone!</div>
+        <div class="message"><span class="timestamp">16:25</span> <span class="nick">user02</span>: Hi user01!</div>
+        <div class="message"><span class="timestamp">16:26</span> <span class="nick">@admin</span>: Stay cool and enjoy chatting.</div>
+      </div>
+      <div class="input-bar">> _</div>
+    </div>
+    <div class="user-list">
+      <div class="user">@admin</div>
+      <div class="user">user01</div>
+      <div class="user">user02</div>
+      <div class="user">mynewbie7</div>
+    </div>
   </div>
 </body>
 </html>
