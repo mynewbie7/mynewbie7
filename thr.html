@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threads Style UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex justify-center px-4 py-8">
+
+  <div class="w-full max-w-md">
+    <!-- Header -->
+    <header class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-bold">Home</h1>
+      <div class="w-8 h-8 rounded-full bg-gray-600"></div>
+    </header>
+
+    <!-- Post Card -->
+    <div class="space-y-6">
+      <!-- Single Post -->
+      <div class="flex space-x-4">
+        <!-- Profile Photo -->
+        <div class="w-10 h-10 rounded-full bg-gray-600"></div>
+
+        <!-- Post Content -->
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <span class="font-semibold">username</span>
+            <span class="text-sm text-gray-400">2h ago</span>
+          </div>
+          <p class="mt-1 text-sm text-gray-200">
+            This is a sample post content that mimics the style of Threads.
+          </p>
+
+          <!-- Actions -->
+          <div class="mt-2 flex gap-4 text-gray-400 text-sm">
+            <button>Like</button>
+            <button>Reply</button>
+            <button>Repost</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat Post as Needed -->
+    </div>
+  </div>
+</body>
+</html>
